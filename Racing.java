@@ -26,7 +26,7 @@ class Racing extends Thread implements KeyListener
 		arrow=new JLabel();
 		arrow.setBounds(280,250,200,150);
 		
-		timer=new JLabel();
+		timer=new JLabel(new ImageIcon("timer.png"));
 		timer.setBounds(600,10,50,20);
 		
 		pane=f.getLayeredPane();
@@ -40,25 +40,24 @@ class Racing extends Thread implements KeyListener
 		
 		f.addKeyListener(this);
 	}
-	int time_min=0;
-	double time_sec=0;
+	int time_min=00,time_sec=00;
 	public void run()
 	{
 		while(true)
 		{
 			try
 			{
-				timer.setText(time_min+":"+((int)time_sec));
+				timer.setText(time_min+":"+time_sec);
 				back.setIcon(new ImageIcon("race1.png"));
 				Thread.sleep(100);
-				time_sec+=0.1;
-				timer.setText(time_min+":"+((int)time_sec));
+				time_sec++;
+				timer.setText(time_min+":"+time_sec);
 				back.setIcon(new ImageIcon("race2.png"));
 				Thread.sleep(100);
-				time_sec+=0.1;
-				timer.setText(time_min+":"+((int)time_sec));
-				time_min=((int)time_sec==60)?(time_min+=1):time_min;
-				time_sec=((int)time_sec==60)?(time_sec=0):time_sec;
+				time_sec++;
+				timer.setText(time_min+":"+time_sec);
+				time_min=time_sec==60?(time_min+=1):time_min;
+				time_sec=time_sec==60?time_sec=0:time_sec;
 			}catch(Exception e){}
 		}
 	}
