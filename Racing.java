@@ -40,7 +40,7 @@ class Racing extends Thread implements KeyListener
 		
 		f.addKeyListener(this);
 	}
-	int time_min=00,time_sec=00;
+	int time_min=00,time_sec=00,time_msec=00;
 	public void run()
 	{
 		while(true)
@@ -50,11 +50,13 @@ class Racing extends Thread implements KeyListener
 				timer.setText(time_min+":"+time_sec);
 				back.setIcon(new ImageIcon("race1.png"));
 				Thread.sleep(100);
-				time_sec++;
+				time_msec+=100;
 				timer.setText(time_min+":"+time_sec);
 				back.setIcon(new ImageIcon("race2.png"));
 				Thread.sleep(100);
-				time_sec++;
+				time_msec+=100;
+				time_sec=time_msec==1000?time_sec+=1:time_sec;
+				time_msec=time_msec==1000?time_msec=0:time_msec;
 				timer.setText(time_min+":"+time_sec);
 				time_min=time_sec==60?(time_min+=1):time_min;
 				time_sec=time_sec==60?time_sec=0:time_sec;
