@@ -91,7 +91,6 @@ class Racing extends Thread implements KeyListener
 	
 	public static void main(String args[])
 	{
-		new Racing();
 		Racing rt1=new Racing();
 		rt1.start();
 	}
